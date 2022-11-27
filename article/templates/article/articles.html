@@ -1,0 +1,52 @@
+{% extends "article/layout.html" %}
+
+{% block body %}
+
+{{duration}}
+
+<h3>Makaleler</h3>
+<hr>
+
+<form>
+  {% csrf_token %}
+  <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Proje isimlerinde ara...">
+  <button type="submit" class="btn btn-danger">Ara</button>
+</form>
+
+{% if articles %}
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Başlık</th>
+      <th scope="col">Yazar</th>
+      <th scope="col">Tarih</th>    
+      
+    </tr>
+  </thead>
+  <tbody>
+
+  {% for article in articles  %}
+    <tr>
+        <th scope="row">{{article.id}}</th>
+        <td><a href="{% url 'article:detail' article.id %} ">{{article.title}}</a></td>
+        <td>{{article.author.username}}</td>
+        <td>{{article.created_date}}</td>
+    </tr> 
+      
+  {% endfor %}
+
+{% else %}
+
+    <div class="alert alert-danger">Makale Bulunamadı</div>
+
+{% endif %}
+
+      </tbody>
+</table>
+
+{% endblock body %}
+
+
+
