@@ -1,4 +1,4 @@
-django == 4.1.9
+django == 4.1.10
 django-cleanup == 2.1.0
 django-crispy-forms == 1.7.2
 django-js-asset == 1.0.0
